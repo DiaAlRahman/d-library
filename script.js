@@ -26,8 +26,12 @@ const dLib = {
         pages.textContent = `Pages: ${book.pages}`;
         bookInfo.appendChild(pages);
 
-        const isRead = document.createElement('p');
+        const isRead = document.createElement('button');
         isRead.textContent = book.isRead ? 'Read' : 'Not Read';
+        isRead.addEventListener('click', () => {
+          book.isRead = !book.isRead;
+          isRead.textContent = book.isRead ? 'Read' : 'Not Read';
+        });
         bookInfo.appendChild(isRead);
 
         bookCard.appendChild(bookInfo);
