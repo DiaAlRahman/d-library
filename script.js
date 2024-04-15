@@ -1,4 +1,45 @@
-const dLibrary = [];
+const dLib = {
+  library: [],
+  displayLibrary: function () {
+    const displayLib = document.getElementById('display-library');
+    for (const book of this.library) {
+      if (!book.present) {
+        const bookCard = document.createElement('div');
+        const bookInfo = document.createElement('div');
+        bookCard.classList.add('book-card');
+        bookInfo.classList.add('book-info');
+
+        const title = document.createElement('h2');
+        title.textContent = `Book title: ${book.title}`;
+        bookInfo.appendChild(title);
+
+        const author = document.createElement('p');
+        author.textContent = `Author: ${book.author}`;
+        bookInfo.appendChild(author);
+
+        const pages = document.createElement('p');
+        pages.textContent = `Pages: ${book.pages}`;
+        bookInfo.appendChild(pages);
+
+        const isRead = document.createElement('p');
+        isRead.textContent = book.isRead ? 'Read' : 'Not Read';
+        bookInfo.appendChild(isRead);
+
+        bookCard.appendChild(bookInfo);
+
+        const removeBtn = document.createElement('button');
+        removeBtn.classList.add('remove-btn');
+        removeBtn.textContent = 'Remove';
+        bookCard.appendChild(removeBtn);
+
+        displayLib.appendChild(bookCard);
+      };
+    }
+  },
+  removeBook: function (book) { 
+  
+  },
+};
 
 // book constructor function
 function Book(title, author, pages, isRead) {
@@ -6,10 +47,14 @@ function Book(title, author, pages, isRead) {
   this.author = author;
   this.pages = pages;
   this.isRead = isRead;
+
+  this.present = false;
 };
 
 function addBookToLibrary(newBook) {
-  dLibrary.push(newBook);
+  dLib.library.push(newBook);
+  dLib.displayLibrary();
+  newBook.present = true;
 };
 
 // open popup when clicking on the add book button
@@ -17,6 +62,7 @@ document.getElementById('add-book-btn').addEventListener('click', () => {
   document.getElementById('add-book-popup').classList.toggle('active');
 });
 
+// add new book to library when form is submitted
 document.getElementById('add-book-form').addEventListener('submit', (e) => { 
   e.preventDefault();
   const title = document.getElementById('title');
@@ -28,7 +74,6 @@ document.getElementById('add-book-form').addEventListener('submit', (e) => {
   addBookToLibrary(newBook);
   document.getElementById('add-book-popup').classList.remove('active');
   resetForm(title, author, pages, isRead);
-  console.log(dLibrary);
 });
 
 function resetForm(title, author, pages, isRead) {
@@ -42,3 +87,19 @@ function resetForm(title, author, pages, isRead) {
 document.querySelector('.popup .overlay').addEventListener('click', () => {
   document.getElementById('add-book-popup').classList.remove('active');
 });
+
+
+// quick test case - add some books to the library
+const library = [];
+library.push(new Book('The Hobbit', 'J.R.R. Tolkien', 295, true));
+library.push(new Book('The Fellowship of the Ring', 'J.R.R. Tolkien', 398, true));
+library.push(new Book('The Two Towers', 'J.R.R. Tolkien', 327, true));
+library.push(new Book('The Return of the King', 'J.R.R. Tolkien', 347, true));
+library.push(new Book('The Silmarillion', 'J.R.R. Tolkien', 365, true));
+library.push(new Book('The Children of Húrin', 'J.R.R. Tolkien', 313, true));
+library.push(new Book('Unfinished Tales', 'J.R.R. Tolkien', 405, true));
+library.push(new Book('The Fall of Gondolin', 'J.R.R. Tolkien', 304, true));
+library.push(new Book('Beren and Lúthien', 'J.R.R. Tolkien', 288, true));
+for (const newBook of library) {
+  addBookToLibrary(newBook);
+}
