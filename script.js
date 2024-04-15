@@ -1,5 +1,10 @@
 const dLib = {
   library: [],
+  removeBook: function (book) {
+    const index = this.library.indexOf(book);
+    this.library.splice(index, 1);
+    console.log(this.library, this.library.length)
+  },
   displayLibrary: function () {
     const displayLib = document.getElementById('display-library');
     for (const book of this.library) {
@@ -10,11 +15,11 @@ const dLib = {
         bookInfo.classList.add('book-info');
 
         const title = document.createElement('h2');
-        title.textContent = `Book title: ${book.title}`;
+        title.textContent = `${book.title}`;
         bookInfo.appendChild(title);
 
         const author = document.createElement('p');
-        author.textContent = `Author: ${book.author}`;
+        author.textContent = `${book.author}`;
         bookInfo.appendChild(author);
 
         const pages = document.createElement('p');
@@ -30,14 +35,16 @@ const dLib = {
         const removeBtn = document.createElement('button');
         removeBtn.classList.add('remove-btn');
         removeBtn.textContent = 'Remove';
+        removeBtn.addEventListener('click', (book) => {
+          book.present = false;
+          this.removeBook(book);
+          bookCard.remove();
+        });
         bookCard.appendChild(removeBtn);
 
         displayLib.appendChild(bookCard);
       };
     }
-  },
-  removeBook: function (book) { 
-  
   },
 };
 

@@ -91,7 +91,7 @@ header {
 
 #display-library{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   gap: 20px
 }
 
@@ -133,3 +133,11 @@ header {
   width: 25ch;
 }
 
+.book-card{
+  width: 400px;
+  padding: 20px;
+}
+.book-card *{
+  width: 100%;
+  text-align: center;
+}
