@@ -87,6 +87,7 @@ document.getElementById('add-book-form').addEventListener('submit', (e) => {
   resetForm(title, author, pages, isRead);
 });
 
+// resets form after submission
 function resetForm(title, author, pages, isRead) {
   title.value = '';
   author.value = '';
