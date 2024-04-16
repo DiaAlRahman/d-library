@@ -10,3 +10,10 @@ Note to self, on the ground rules for modular JS:
 - self-contained module
   * everything to do with the module is in the module
   * no global variables
+  * if a module manages more than one thing it should be split up
+- seperation of concerns
+- DRY code
+- efficient DOM usage
+ * very few selections
+- no memory leaks
+- all events can be unbound 
