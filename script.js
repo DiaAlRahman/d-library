@@ -74,7 +74,7 @@ document.getElementById('add-book-btn').addEventListener('click', () => {
 });
 
 // add new book to library when form is submitted
-document.getElementById('add-book-form').addEventListener('submit', (e) => { 
+document.getElementById('add-book-form').addEventListener('submit', (e) => {
   e.preventDefault();
   const title = document.getElementById('title');
   const author = document.getElementById('author');
@@ -111,7 +111,7 @@ library.push(new Book('The Silmarillion', 'J.R.R. Tolkien', 365, true));
 library.push(new Book('The Children of Húrin', 'J.R.R. Tolkien', 313, true));
 library.push(new Book('Unfinished Tales', 'J.R.R. Tolkien', 405, true));
 library.push(new Book('The Fall of Gondolin', 'J.R.R. Tolkien', 304, true));
-library.push(new Book('Beren and Lúthien', 'J.R.R. Tolkien', 288, true));
+library.push(new Book('Beren and Lúthien', 'J.R.R. Tolkien', 288, false));
 for (const newBook of library) {
   addBookToLibrary(newBook);
 }
