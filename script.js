@@ -53,13 +53,14 @@ const dLib = {
 };
 
 // book constructor function
-function Book(title, author, pages, isRead) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.isRead = isRead;
-
-  this.present = false;
+class Book {
+  constructor(title, author, pages, isRead) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.isRead = isRead;
+    this.present = false;
+  }
 };
 
 function addBookToLibrary(newBook) {
