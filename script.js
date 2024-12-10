@@ -1,11 +1,11 @@
-const dLib = {
-  library: [],
-  removeBook: function (book) {
+class dLib {
+  static library = []
+  static removeBook(book) {
     const index = this.library.indexOf(book);
     this.library.splice(index, 1);
-    console.log(this.library, this.library.length)
-  },
-  displayLibrary: function () {
+    // console.log(this.library, this.library.length)
+  };
+  static displayLibrary() {
     const displayLib = document.getElementById('display-library');
     for (const book of this.library) {
       if (!book.present) {
@@ -49,9 +49,13 @@ const dLib = {
         displayLib.appendChild(bookCard);
       };
     }
-  },
+  };
+  static addBookToLibrary(newBook) {
+    dLib.library.push(newBook);
+    dLib.displayLibrary();
+    newBook.present = true;
+  };
 };
-
 // book constructor function
 class Book {
   constructor(title, author, pages, isRead) {
@@ -60,13 +64,7 @@ class Book {
     this.pages = pages;
     this.isRead = isRead;
     this.present = false;
-  }
-};
-
-function addBookToLibrary(newBook) {
-  dLib.library.push(newBook);
-  dLib.displayLibrary();
-  newBook.present = true;
+  };
 };
 
 // open popup when clicking on the add book button
@@ -83,7 +81,7 @@ document.getElementById('add-book-form').addEventListener('submit', (e) => {
   const isRead = document.getElementById('isRead');
 
   const newBook = new Book(title.value, author.value, pages.value, isRead.checked);
-  addBookToLibrary(newBook);
+  dLib.addBookToLibrary(newBook);
   document.getElementById('add-book-popup').classList.remove('active');
   resetForm(title, author, pages, isRead);
 });
@@ -114,5 +112,5 @@ library.push(new Book('Unfinished Tales', 'J.R.R. Tolkien', 405, true));
 library.push(new Book('The Fall of Gondolin', 'J.R.R. Tolkien', 304, true));
 library.push(new Book('Beren and Lúthien', 'J.R.R. Tolkien', 288, false));
 for (const newBook of library) {
-  addBookToLibrary(newBook);
+  dLib.addBookToLibrary(newBook);
 }
